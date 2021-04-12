@@ -53,9 +53,23 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - StateRoot ?
 - Nonce: A value used to demonstrate proof-of-work for a block by the miner.
 
-- Uncle blocks
-- Gas
-- Transactions, standard data
+**Uncle blocks ?**
+**Gas ?**
+
+**Transactions, standard data**
+
+- Transaction hash: A hash generated when the transaction is submitted.
+- Status: An indication of whether the transaction is pending, failed or a success (see: ethereum."transactions" success (bool))
+- Block: The block in which the transaction has been included. (ethereum."blocks" number, ethereum."transactions" block_number?)
+- Timestamp: The time at which a miner mined the transaction (see: block_time?)
+- From: The address of the account that submitted the transaction.
+- To: The address of the recipient or smart contract that the transaction interacts with.
+- Tokens transferred ?
+- Value: The total ETH value being transferred.
+- Transaction fee ?
+
+**Transactions, advanced data**
+
 - Accounts, user
 - Accounts, smart contracts
 - Tokens
@@ -63,7 +77,6 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 - For later:
 - Blocks, advanced data
-- Transactions, advanced data
 
 #### Available Ethereum Tables in Dune Analytics
 
@@ -72,7 +85,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 3. **Logs**: block_hash, block_number, block_time, contract_address, data, index, topic1, topic2, topic3, topic4, tx_hash, tx_index
 4. **Signatures**: abi, id, signature
 5. **Traces**: address, block_hash, block_number, block_time, call_type, code, error, from, gas, gas_used, input, output, refund_address, sub_traces, success, to, trace_address, tx_hash, tx_index, tx_success, type, value
-6. **Transactions**: block_hash, block_number\*, block_time, data, from, gas_limit, gas_price, gas_used, hash, index, nonce, success, to, value
+6. **Transactions**: block_hash, block_number\*, block_time*, data, from*, gas_limit, gas_price, gas_used, hash*, index, nonce, success*, to*, value*
 
 ## Key SQL Queries
 
