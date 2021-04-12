@@ -70,10 +70,34 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 **Transactions, advanced data**
 
-- Accounts, user
-- Accounts, smart contracts
-- Tokens
-- Network
+- Gas limit: The maximum numbers of gas units this transaction can consume.
+- Gas used: The actual amount of gas units the transaction consumed.
+- Gas price: The price set per gas unit.
+- Nonce: The transaction number for the `from` address (starts at 0 so a nonce of 100 would actually be the 101st transaction submitted by this account)
+- Input data: Any extra information required by the transaction (see: data?)
+
+**Accounts, user ?**
+
+**Accounts, smart contracts**
+
+- Contract creator ?
+- Creation transaction ?
+- Source code ?
+- Contract ABI: The Application Binary Interface of the contract - the calls the contract makes and data received (see: abi?)
+- Contract creation code ?
+- Contract events ?
+
+**Tokens (see specific Tokens)**
+
+**Network**
+
+- Difficulty: The current mining difficulty (see: ethereum."blocks" difficulty?)
+- Hash rate ?
+- Total transactions ?
+- Transactions per second ?
+- ETH price ?
+- Total ETH Supply ?
+- Market cap ?
 
 - For later:
 - Blocks, advanced data
@@ -81,11 +105,11 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 #### Available Ethereum Tables in Dune Analytics
 
 1. **Blocks**: difficulty*, gas_limit*, gas_used*, hash*, miner*, nonce*, number*, parent_hash*, size*, time*, total_difficulty
-2. **Contracts**: abi, address, base, code, created_at, dynamic, name, namespace, updated_at
+2. **Contracts**: abi*, address, base, code*, created_at, dynamic, name, namespace, updated_at
 3. **Logs**: block_hash, block_number, block_time, contract_address, data, index, topic1, topic2, topic3, topic4, tx_hash, tx_index
 4. **Signatures**: abi, id, signature
 5. **Traces**: address, block_hash, block_number, block_time, call_type, code, error, from, gas, gas_used, input, output, refund_address, sub_traces, success, to, trace_address, tx_hash, tx_index, tx_success, type, value
-6. **Transactions**: block_hash, block_number\*, block_time*, data, from*, gas_limit, gas_price, gas_used, hash*, index, nonce, success*, to*, value*
+6. **Transactions**: block_hash, block_number\*, block_time*, data*, from*, gas_limit*, gas_price*, gas_used*, hash*, index, nonce*, success*, to*, value\*
 
 ## Key SQL Queries
 
