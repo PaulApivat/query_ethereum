@@ -33,19 +33,21 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 **note**: Focus on current Ethereum chain, not Eth2 (date: 12/4/2021)
 
 **Blocks, standard data**
-• Block height?
-• Timestamp: time at which a miner mined the block.
-• Transactions: The number of transactions included within the block. (ethereum."blocks" number, ethereum."transactions" block_number?)
-• Miner: Address of the miner who mined the block.
-• Reward ?
-• Difficulty: The difficulty associated with mining the block.
-• Size: The size of the data within the block (measured in bytes).
-• Gas used: The total units of gas used by the transactions in the block.
-• Gas limit: The total gas limits set by the transactions in the block.
-• Extra data ?
+
+- Block height?
+- Timestamp: time at which a miner mined the block.
+- Transactions: The number of transactions included within the block. (ethereum."blocks" number, ethereum."transactions" block_number?)
+- Miner: Address of the miner who mined the block.
+- Reward ?
+- Difficulty: The difficulty associated with mining the block.
+- Size: The size of the data within the block (measured in bytes).
+- Gas used: The total units of gas used by the transactions in the block.
+- Gas limit: The total gas limits set by the transactions in the block.
+- Extra data ?
 
 **Blocks, advanced data**
-• Hash: The cryptographic hash that represents the block header (the unique identifier of the block).
+
+- Hash: The cryptographic hash that represents the block header (the unique identifier of the block).
 
 - Uncle blocks
 - Gas
