@@ -34,7 +34,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 **Blocks, standard data**
 
-- Block height?
+- Block height ?
 - Timestamp: time at which a miner mined the block.
 - Transactions: The number of transactions included within the block. (ethereum."blocks" number, ethereum."transactions" block_number?)
 - Miner: Address of the miner who mined the block.
@@ -48,6 +48,10 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 **Blocks, advanced data**
 
 - Hash: The cryptographic hash that represents the block header (the unique identifier of the block).
+- Parent hash: The hash of hte block that came before the current block.
+- Sha3Uncles ?
+- StateRoot ?
+- Nonce: A value used to demonstrate proof-of-work for a block by the miner.
 
 - Uncle blocks
 - Gas
@@ -63,7 +67,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 #### Available Ethereum Tables in Dune Analytics
 
-1. **Blocks**: difficulty*, gas_limit*, gas_used*, hash*, miner*, nonce, number*, parent_hash, size*, time*, total_difficulty
+1. **Blocks**: difficulty*, gas_limit*, gas_used*, hash*, miner*, nonce*, number*, parent_hash*, size*, time*, total_difficulty
 2. **Contracts**: abi, address, base, code, created_at, dynamic, name, namespace, updated_at
 3. **Logs**: block_hash, block_number, block_time, contract_address, data, index, topic1, topic2, topic3, topic4, tx_hash, tx_index
 4. **Signatures**: abi, id, signature
