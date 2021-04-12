@@ -1,6 +1,6 @@
 # query_ethereum
 
-A project to Query Ethereum with SQL.
+A project to create a tutorial for querying Ethereum with SQL using [Dune Analytics](https://duneanalytics.com/).
 
 ## Motivation
 
@@ -39,11 +39,18 @@ A project to Query Ethereum with SQL.
 - Network
 
 - For later:
-
 - Eth2 Data; Epoch, Slot, Blocks, Validators, Attestations, Network,
-
 - Block explorers: Etherscan, Blockscout, Etherchain, Ethplorer, Blockchair
 - Eth2 Block Explorers: beaconcha, beaconscan, eth2stats.io, ethscan.org
+
+#### Available Ethereum Tables in Dune Analytics
+
+1. **Blocks**: difficulty, gas_limit, gas_used, hash, miner, nonce, number, parent_hash, size, time, total_difficulty
+2. **Contracts**: abi, address, base, code, created_at, dynamic, name, namespace, updated_at
+3. **Logs**: block_hash, block_number, block_time, contract_address, data, index, topic1, topic2, topic3, topic4, tx_hash, tx_index
+4. **Signatures**: abi, id, signature
+5. **Traces**: address, block_hash, block_number, block_time, call_type, code, error, from, gas, gas_used, input, output, refund_address, sub_traces, success, to, trace_address, tx_hash, tx_index, tx_success, type, value
+6. **Transactions**: block_hash, block_number, block_time, data, from, gas_limit, gas_price, gas_used, hash, index, nonce, success, to, value
 
 ## Key SQL Queries
 
