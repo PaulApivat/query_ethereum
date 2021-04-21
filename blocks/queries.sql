@@ -101,6 +101,29 @@ FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
 
+/* Ethereum Daily Gas Used Chart */
+/* Total Gas Used per day Over Time */
+/* MATCHES Etherscan chart: https://etherscan.io/chart/gasused */
+/* proper metric is gas / tx */
+SELECT 
+SUM(gas_used) AS total_gas_used,
+DATE_TRUNC('day', time) AS dt
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+
+/* Ethereum Average Gas Limit Chart */
+/* Average Daily Gas Limit Over Time */
+/* MATCHES Etherscan: https://etherscan.io/chart/gaslimit  */
+SELECT 
+AVG(gas_limit) AS avg_gas_limit,
+DATE_TRUNC('day', time) AS dt
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+
+
+
 
 /************************** Transaction, standard data ***************************/
 
