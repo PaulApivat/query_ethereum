@@ -24,7 +24,12 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
   • SQL tables and data sources
   • [AnyBlock SQL Documentation](https://www.anyblockanalytics.com/docs/sql/schema/)
   • [Google Spreadsheet: Data Model for Ethereum SQL Index](https://docs.google.com/spreadsheets/d/1ehCIQxjSZcVLnddDWHBzhPb8h83mHWZxvyX9eckghbU/edit?usp=sharing)
--
+
+4/21/2021
+
+- Create queries for ethereum."blocks", covering block size, timestamp, miner addresses, network difficulty, daily gas limit and use.
+- Next step: Hash Rate, parent hash and nonce
+- Create Queries for Transactions
 
 ## Key Metrics from the Block Explorer
 
