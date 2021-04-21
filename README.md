@@ -36,11 +36,11 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 - Block height ?
 - Timestamp: time at which a miner mined the block.
-- Transactions: The number of transactions included within the block. (ethereum."blocks" number, ethereum."transactions" block_number?)
+- Transactions: The number of transactions included within the block. ( COUNT(\*) in ethereum."transactions")
 - Miner: Address of the miner who mined the block.
 - Reward ?
 - Difficulty: The difficulty associated with mining the block.
-- Size: The size of the data within the block (measured in bytes).
+- Size: The size of the data within the block (measured in bytes). ?? (block size vs size of data within block)
 - Gas used: The total units of gas used by the transactions in the block.
 - Gas limit: The total gas limits set by the transactions in the block.
 - Extra data ?
