@@ -68,6 +68,19 @@ GROUP BY unique_miner
 ORDER BY num_blocks_mined DESC
 LIMIT 25
 
+/* With % of total column */
+SELECT 
+DISTINCT(miner) AS unique_miner,
+COUNT(*) AS num_blocks_mined,
+(COUNT(*) / (SUM(COUNT(*)) OVER() )) * 100 AS percent_total
+FROM ethereum."blocks"
+WHERE time > now() - interval '7 days'
+GROUP BY unique_miner
+ORDER BY num_blocks_mined DESC
+LIMIT 25
+
+
+
 
 /* Number of blocks that Ethermine (mining pool) mined */
 /* TOTAL Blocks Mined by Ethermine: 2409771, Date: 21/4/2021 */
