@@ -55,20 +55,28 @@ GROUP BY dt
 OFFSET 1
 
 /* Top 25 Miners by Number of Blocks Mined */
-/* Not Match Ether Scan, except for largest Miner at 22.5% */
-/* confirm miner address of Spark Pool as largest miner on Etherscan */
-/* Spark Pool Address: 0x5A0b54D5dc17e0AadC383d2db43B0a0D3E029c4c */
-/* 2nd Largest miner from query is Nanopool Address: 0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5 */
-/* (but Etherscan has Ethermine as second largest pool) */
-/* view % in Chart Options */
+/* MATCHES Etherscan: Top 25 Miners over last 7 days */
+/* source: https://etherscan.io/stat/miner?range=7&blocktype=blocks */
+/* Missing % of total column */
+
 SELECT 
 DISTINCT(miner) AS unique_miner,
 COUNT(*) AS num_blocks_mined
 FROM ethereum."blocks"
+WHERE time > now() - interval '7 days'
 GROUP BY unique_miner
 ORDER BY num_blocks_mined DESC
 LIMIT 25
-OFFSET 1
+
+
+/* Number of blocks that Ethermine (mining pool) mined */
+/* TOTAL Blocks Mined by Ethermine: 2409771, Date: 21/4/2021 */
+SELECT 
+COUNT(*) 
+FROM ethereum."blocks"
+WHERE miner = '\xea674fdde714fd979de3edf0f56aa9716b898ec8'
+LIMIT 25
+
 
 
 
