@@ -26,7 +26,7 @@ GROUP BY dt
 OFFSET 1
 
 /* Ethereum Block Count Per Day Over Time */
-/* Matches Etherscan */
+/* MATCHES Etherscan */
 SELECT 
 DATE_TRUNC('day', time) AS dt,
 COUNT(*) AS block_count
@@ -90,13 +90,22 @@ FROM ethereum."blocks"
 WHERE miner = '\xea674fdde714fd979de3edf0f56aa9716b898ec8'
 LIMIT 25
 
-
+/* Ethereum Network Difficulty Chart */
+/* Average Difficulty per day over time */
+/* MATCHES Etherscan chart: https://etherscan.io/chart/difficulty */
+/* Difficulty is measured in TeraHashes - TH source: https://2miners.com/blog/mining-difficulty-and-network-hashrate-explained/  */
+SELECT 
+AVG(difficulty) AS average_difficulty,
+DATE_TRUNC('day', time) AS dt
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
 
 
 /************************** Transaction, standard data ***************************/
 
 /* Number of Daily Transaction over Time */
-/* Matches Etherscan: Ethereum Daily Transactions Chart; source: https://etherscan.io/chart/tx */ 
+/* MATCHES Etherscan: Ethereum Daily Transactions Chart; source: https://etherscan.io/chart/tx */ 
 SELECT 
 DATE_TRUNC('day', block_time) AS dt,
 COUNT(*) AS transaction_count
