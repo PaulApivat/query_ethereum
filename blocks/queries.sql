@@ -126,6 +126,16 @@ OFFSET 1
 
 /* Hash and Hash Rate are not the same */
 
+/* Hash Rate is Hash Per Second */
+/* Count Number of Hash, Group by Time (seconds) */
+/* Need to convert to Day */
+SELECT 
+COUNT(hash) AS count_hash,
+DATE_TRUNC('second', time) AS st
+FROM ethereum."blocks"
+GROUP BY st
+LIMIT 10
+OFFSET 1
 
 
 
