@@ -122,6 +122,11 @@ FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
 
+/************************** Blocks, advanced data ***************************/
+
+/* Hash and Hash Rate are not the same */
+
+
 
 
 

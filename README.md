@@ -47,7 +47,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 **Blocks, advanced data**
 
-- Hash: The cryptographic hash that represents the block header (the unique identifier of the block).
+- Hash: The cryptographic hash that represents the block header (the unique identifier of the block). (Hash and Hash Rate are not the same) ??
 - Parent hash: The hash of hte block that came before the current block.
 - Sha3Uncles ?
 - StateRoot ?
