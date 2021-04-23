@@ -34,6 +34,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 4/23/2021
 
 - Create Network Hashrate Query (inspired by [YazzyYaz](https://github.com/YazzyYaz/Ether-Queries/blob/master/hashrate.sql))
+- Create Hashrate to match early Ethereum Classic, but eventually run into "Error: Division by 0"
 
 ## Key Metrics from the Block Explorer
 
