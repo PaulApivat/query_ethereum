@@ -41,6 +41,7 @@ ORDER BY block_time ASC
 
 
 /* ether-queries hashrate.sql Apply to Dune */
+/* still need to calcualte hashrate */
 WITH block_rows AS (
   SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
   FROM ethereum."blocks"
@@ -54,3 +55,43 @@ JOIN block_rows mp
 ON  mc.rn = mp.rn - 1
 ORDER BY block_time ASC
 LIMIT 10
+OFFSET 1
+
+/* better formatting */
+WITH block_rows AS (
+    SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
+    FROM ethereum."blocks"
+) 
+    SELECT mp.time AS block_time, 
+    mp.time - mc.time AS time_elapsed,
+    ((mp.difficulty + mc.difficulty) / 2) AS average_difficulty
+    FROM block_rows mc
+    JOIN block_rows mp
+    ON  mc.rn = mp.rn - 1
+    ORDER BY block_time ASC
+    LIMIT 10
+    OFFSET 1
+
+
+/* Successfully calculate Hashrate */
+WITH block_rows AS (
+    SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
+    FROM ethereum."blocks"
+),
+temp_table AS (
+    SELECT mp.time AS block_time, 
+    mp.time - mc.time AS time_elapsed,
+    ((mp.difficulty + mc.difficulty) / 2) AS average_difficulty
+    FROM block_rows mc
+    JOIN block_rows mp
+    ON  mc.rn = mp.rn - 1
+    ORDER BY block_time ASC
+    LIMIT 10
+    OFFSET 1
+)
+SELECT
+    block_time,
+    time_elapsed,
+    average_difficulty,
+    average_difficulty / extract('second' FROM time_elapsed::interval)::numeric(9,2) AS hashrate
+FROM temp_table t
