@@ -25,6 +25,7 @@ LIMIT 10
 
 /* ether-queries hashrate.sql from YazzyYaz */
 /* Google BigQuery */
+/* source: https://github.com/YazzyYaz/Ether-Queries/blob/master/hashrate.sql */
 WITH block_rows AS (
   SELECT *, ROW_NUMBER() OVER (ORDER BY timestamp) AS rn
   FROM `bigquery-public-data.crypto_ethereum_classic.blocks`
@@ -40,8 +41,7 @@ ORDER BY block_time ASC
 
 
 
-/* ether-queries hashrate.sql Apply to Dune */
-/* still need to calcualte hashrate */
+/* Ether-queries hashrate.sql  */
 WITH block_rows AS (
   SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
   FROM ethereum."blocks"

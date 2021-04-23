@@ -31,6 +31,10 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - Next step: Hash Rate, parent hash and nonce
 - Create Queries for Transactions
 
+4/23/2021
+
+- Create Network Hashrate Query (inspired by [YazzyYaz](https://github.com/YazzyYaz/Ether-Queries/blob/master/hashrate.sql))
+
 ## Key Metrics from the Block Explorer
 
 - Starting Point: [ethereum.org Block-Explorers](https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/), things to query within Dune

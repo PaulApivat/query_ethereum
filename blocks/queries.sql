@@ -123,6 +123,8 @@ GROUP BY dt
 OFFSET 1
 
 /************************** Blocks, advanced data ***************************/
+/* Hashrate query building off from YazzyYaz */
+/* source: https://github.com/YazzyYaz/Ether-Queries/blob/master/hashrate.sql */
 
 /* Hash and Hash Rate are not the same */
 
