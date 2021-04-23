@@ -10,6 +10,8 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 - Block explorers: Etherscan, Blockscout, Etherchain, Ethplorer, Blockchair
 
+- [YazzyYaz-Ether-Queries](https://github.com/YazzyYaz/Ether-Queries)
+
 ## Documenting Progress
 
 4/12/2021
@@ -35,6 +37,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 
 - Create Network Hashrate Query (inspired by [YazzyYaz](https://github.com/YazzyYaz/Ether-Queries/blob/master/hashrate.sql))
 - Create Hashrate to match early Ethereum Classic, but eventually run into "Error: Division by 0"
+- Next step: hashrate_by_day.sql, hashrate_by_hour.sql, hashrate_daily_average.sql [link](https://github.com/YazzyYaz/Ether-Queries)
 
 ## Key Metrics from the Block Explorer
 
