@@ -148,6 +148,7 @@ LIMIT 5
 OFFSET 1
 
 /* Ethereum Network HASHRATE */
+/* NOTE: This works for LIMITED queries, but eventually run in to "Error: Division by zero." */
 WITH block_rows AS (
     SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
     FROM ethereum."blocks"
