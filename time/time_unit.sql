@@ -22,3 +22,35 @@ SELECT
     DATE_TRUNC('year', block_time) AS year
 FROM ethereum."transactions"
 LIMIT 10
+
+/* ether-queries hashrate.sql from YazzyYaz */
+/* Google BigQuery */
+WITH block_rows AS (
+  SELECT *, ROW_NUMBER() OVER (ORDER BY timestamp) AS rn
+  FROM `bigquery-public-data.crypto_ethereum_classic.blocks`
+)
+SELECT mp.timestamp AS block_time, 
+TIMESTAMP_DIFF(mp.timestamp, mc.timestamp, SECOND) AS time_elapsed,
+((mp.difficulty + mc.difficulty) / 2) AS average_difficulty,
+((mp.difficulty + mc.difficulty) / 2) / TIMESTAMP_DIFF(mp.timestamp, mc.timestamp, SECOND) AS hashrate
+FROM block_rows mc
+JOIN block_rows mp
+ON  mc.rn = mp.rn - 1
+ORDER BY block_time ASC
+
+
+
+/* ether-queries hashrate.sql Apply to Dune */
+WITH block_rows AS (
+  SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
+  FROM ethereum."blocks"
+)
+SELECT 
+mp.time AS block_time, 
+mp.time - mc.time AS time_elapsed,
+((mp.difficulty + mc.difficulty) / 2) AS average_difficulty
+FROM block_rows mc
+JOIN block_rows mp
+ON  mc.rn = mp.rn - 1
+ORDER BY block_time ASC
+LIMIT 10
