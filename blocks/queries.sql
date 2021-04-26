@@ -171,6 +171,36 @@ SELECT
     average_difficulty / extract('second' FROM time_elapsed::interval)::numeric(9,2) AS hashrate
 FROM temp_table t
 
+/* Ethereum Hashrate by Day */ 
+WITH block_rows AS (
+    SELECT *, ROW_NUMBER() OVER (ORDER BY time) AS rn
+    FROM ethereum."blocks"
+),
+delta_time AS (
+    SELECT
+        mp.time AS block_time,
+        mp.difficulty AS difficulty,
+        (mp.time - mc.time) AS delta_block_time
+    FROM block_rows mc
+    JOIN block_rows mp
+    ON mc.rn = mp.rn - 1
+),
+hashrate_book AS (
+    SELECT 
+        DATE_TRUNC('day', block_time) AS block_day,
+        AVG(delta_block_time) AS daily_avg_block_time,
+        AVG(difficulty) AS daily_avg_difficulty
+        FROM delta_time
+        GROUP BY block_day
+)
+SELECT 
+    block_day,
+    (daily_avg_difficulty / extract('second' FROM daily_avg_block_time::interval)::numeric(9,2))/1000000000 AS hashrate
+FROM hashrate_book
+ORDER BY block_day ASC
+
+
+
 
 
 /************************** Transaction, standard data ***************************/
