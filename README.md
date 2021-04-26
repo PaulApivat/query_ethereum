@@ -39,6 +39,11 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - Create Hashrate to match early Ethereum Classic, but eventually run into "Error: Division by 0"
 - Next step: hashrate_by_day.sql, hashrate_by_hour.sql, hashrate_daily_average.sql [link](https://github.com/YazzyYaz/Ether-Queries)
 
+4/25 - 4/26
+
+- Create Daily Network Hashrate Query
+- Next step: create Ethereum Block dashboard
+
 ## Key Metrics from the Block Explorer
 
 - Starting Point: [ethereum.org Block-Explorers](https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/), things to query within Dune
