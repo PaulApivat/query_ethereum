@@ -6,7 +6,7 @@
 /* - need distinguish between Block Size and Size of Data within the Block */
 /* - number of transaction included within the block is found in ethereum."transaction" table */
 
-/* Avg Block Size Gas Limit */
+/* Average Gas Limit (Block Size), Ethereum */
 /* Etherscan comparison: https://etherscan.io/chart/gaslimit */
 /* Block size 20-30 kb in size */
 SELECT 
@@ -57,8 +57,8 @@ OFFSET 1
 /* Missing % of total column */
 
 SELECT 
-DISTINCT(miner) AS unique_miner,
-COUNT(*) AS num_blocks_mined
+    DISTINCT(miner) AS unique_miner,
+    COUNT(*) AS num_blocks_mined
 FROM ethereum."blocks"
 WHERE time > now() - interval '7 days'
 GROUP BY unique_miner
@@ -67,9 +67,9 @@ LIMIT 25
 
 /* With % of total column */
 SELECT 
-DISTINCT(miner) AS unique_miner,
-COUNT(*) AS num_blocks_mined,
-(COUNT(*) / (SUM(COUNT(*)) OVER() )) * 100 AS percent_total
+    DISTINCT(miner) AS unique_miner,
+    COUNT(*) AS num_blocks_mined,
+    (COUNT(*) / (SUM(COUNT(*)) OVER() )) * 100 AS percent_total
 FROM ethereum."blocks"
 WHERE time > now() - interval '7 days'
 GROUP BY unique_miner
@@ -92,8 +92,8 @@ LIMIT 25
 /* MATCHES Etherscan chart: https://etherscan.io/chart/difficulty */
 /* Difficulty is measured in TeraHashes - TH source: https://2miners.com/blog/mining-difficulty-and-network-hashrate-explained/  */
 SELECT 
-AVG(difficulty) AS average_difficulty,
-DATE_TRUNC('day', time) AS dt
+    AVG(difficulty) AS average_difficulty,
+    DATE_TRUNC('day', time) AS dt
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
@@ -103,8 +103,8 @@ OFFSET 1
 /* MATCHES Etherscan chart: https://etherscan.io/chart/gasused */
 /* proper metric is gas / tx */
 SELECT 
-SUM(gas_used) AS total_gas_used,
-DATE_TRUNC('day', time) AS dt
+    SUM(gas_used) AS total_gas_used,
+    DATE_TRUNC('day', time) AS dt
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
@@ -113,8 +113,8 @@ OFFSET 1
 /* Average Daily Gas Limit Over Time */
 /* MATCHES Etherscan: https://etherscan.io/chart/gaslimit  */
 SELECT 
-AVG(gas_limit) AS avg_gas_limit,
-DATE_TRUNC('day', time) AS dt
+    AVG(gas_limit) AS avg_gas_limit,
+    DATE_TRUNC('day', time) AS dt
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
@@ -195,6 +195,24 @@ SELECT
     (daily_avg_difficulty / extract('second' FROM daily_avg_block_time::interval)::numeric(9,2))/1000000000 AS hashrate
 FROM hashrate_book
 ORDER BY block_day ASC
+
+/*********** What's In a Block ? ************/
+/* reference: https://ethereum.org/en/developers/docs/blocks/ */
+/* missing: transaction list and state root */
+SELECT 
+    time,
+    number,
+    ROW_NUMBER() OVER (ORDER BY time) AS rn,
+    difficulty,
+    total_difficulty,
+    hash,
+    parent_hash,
+    nonce,
+    size,
+    gas_limit
+FROM ethereum."blocks"
+LIMIT 10
+
 
 
 
