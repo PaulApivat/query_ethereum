@@ -63,6 +63,7 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - **Actual Tutorial**
 
 1. Create a Dashboard on Dune, write descriptions/walk-through to help readers understand Ethereum Blocks
+2. Next step: Curate materials on what people need to understand about 'blocks', then create queries
 
 ## Key Metrics from the Block Explorer
 
