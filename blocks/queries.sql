@@ -25,11 +25,12 @@ FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
 
-/* Ethereum Block Count Per Day Over Time */
-/* MATCHES Etherscan */
+/* Ethereum Block Count and Rewards Chart */
+/* Add https://duneanalytics.com/paulapivat/Ethereum-Blocks */
+/* Etherscan comparison:  https://etherscan.io/chart/blocks */
 SELECT 
-DATE_TRUNC('day', time) AS dt,
-COUNT(*) AS block_count
+    DATE_TRUNC('day', time) AS dt,
+    COUNT(*) AS block_count
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
