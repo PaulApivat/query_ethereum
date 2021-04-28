@@ -44,6 +44,23 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - Create Daily Network Hashrate Query
 - Next step: create Ethereum Block dashboard
 
+4/28
+
+- Read [article listing policy](https://ethereum.org/en/contributing/adding-articles/) on ethereum.org
+- Up to date?
+- Information accurate? (Factual or Opinion-based)
+- Author credible? (Reference sources)
+- Brings something new to the table? (i.e., see tutorial with same tags, is it redundant?)
+- Which user persona does this serve?
+
+- Submit an Issue: Suggest a Tutorial, things to include for a tutorial:
+- Tags: QUERYING, ANALYTICS, DUNE ANALYTICS, SQL, POSTGRESQL
+- Title,
+- Description,
+- Published elsewhere,
+- Skill Level,
+- **Actual Tutorial**
+
 ## Key Metrics from the Block Explorer
 
 - Starting Point: [ethereum.org Block-Explorers](https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/), things to query within Dune
