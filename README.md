@@ -50,16 +50,19 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 - Up to date?: Yes.
 - Information accurate? (Factual or Opinion-based) How-To, SQL Queries, Factual
 - Author credible? (Reference sources) Will sync with content from [Block Explorers](https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/) and [Intro to Ethereum](https://ethereum.org/en/developers/docs/intro-to-ethereum/) and [Blocks](https://ethereum.org/en/developers/docs/blocks/)
+- Related topics: [Accounts](https://ethereum.org/en/developers/docs/accounts/), [Transactions](https://ethereum.org/en/developers/docs/transactions/) and [Introduction to Ethereum](https://ethereum.org/en/developers/docs/intro-to-ethereum/)
 - Brings something new to the table? (i.e., see tutorial with same tags, is it redundant?): Yes, existing 'query' articles focus on the _developer_ side. This article caters to _data analyst_. This article focuses on _SQL_ to query the data on the UI made by Dune Analytics.
-- Which user persona does this serve?: Enthusiast / Data Analyst (not necessarily developer)
+- Which user persona does this serve?: Beginner / Enthusiast / Data Analyst (not necessarily developer)
 
-- Submit an Issue: Suggest a Tutorial, things to include for a tutorial:
+- Submit an [Issue: Suggest a Tutorial] , things to include for a tutorial:
 - Tags: [tentative] QUERYING, ANALYTICS, DUNE ANALYTICS, SQL, POSTGRESQL
 - Title: [tentative] Understanding Ethereum fundamentals with SQL
 - Description: [tentative] To compliment relying on APIs provided by Block Explorers (i.e., Etherscan), this tutorial shows readers how to query that data themselves using Dune Analytics.
 - Published elsewhere: TBD
-- Skill Level: Intermediate
+- Skill Level: Beginner - Intermediate
 - **Actual Tutorial**
+
+1. Create a Dashboard on Dune, write descriptions/walk-through to help readers understand Ethereum Blocks
 
 ## Key Metrics from the Block Explorer
 
