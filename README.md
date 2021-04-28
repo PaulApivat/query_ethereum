@@ -65,6 +65,12 @@ A project to create a tutorial for querying Ethereum with SQL using [Dune Analyt
 1. Create a Dashboard on Dune, write descriptions/walk-through to help readers understand Ethereum Blocks
 2. Next step: Curate materials on what people need to understand about 'blocks', then create queries
 
+- [block rewards daily by miner](https://github.com/YazzyYaz/Ether-Queries/blob/master/block_rewards_daily_by_miner.sql)
+- Average Blocks produced per second (shouldn't be less than zero)
+- Blocks Per Day (done)
+- Number of Transactions / Block
+- Add more...
+
 ## Key Metrics from the Block Explorer
 
 - Starting Point: [ethereum.org Block-Explorers](https://ethereum.org/en/developers/docs/data-and-analytics/block-explorers/), things to query within Dune

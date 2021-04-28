@@ -214,6 +214,28 @@ FROM ethereum."blocks"
 LIMIT 10
 
 
+/* Block Rewards Daily by Miners */
+SELECT 
+    miner,
+    DATE_TRUNC('day', time) AS dt,
+    COUNT(miner) AS total_block_reward
+FROM ethereum."blocks"
+GROUP BY miner, dt
+HAVING COUNT(miner) > 1
+
+/* Blocks Per Second */
+WITH temp_table AS (
+    SELECT
+        COUNT(*) AS num_blocks,
+        DATE_TRUNC('day', time) AS dt
+    FROM ethereum."blocks" b
+    GROUP BY dt
+    LIMIT 10
+)
+SELECT
+    num_blocks::numeric(9,2) / 86400 AS blocks_sec,
+    dt
+FROM temp_table
 
 
 
