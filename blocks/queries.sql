@@ -6,24 +6,34 @@
 /* - need distinguish between Block Size and Size of Data within the Block */
 /* - number of transaction included within the block is found in ethereum."transaction" table */
 
-/* Avg Block Size per Day Over Time */
-/* note: unsure if block size is in bytes */
+/* Avg Block Size Gas Limit */
+/* Etherscan comparison: https://etherscan.io/chart/gaslimit */
+/* Block size 20-30 kb in size */
 SELECT 
-DATE_TRUNC('day', time) AS dt,
-AVG(size) AS avg_block_size
+    DATE_TRUNC('day', time) AS dt,
+    AVG(gas_limit) AS avg_block_gas_limit
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
 
-/* Sum Block Size per Day Over Time */ 
-/* note: unsure if block size is in bytes */
-/* looks more like Ethereum Block Count & Rewards Chart in Etherscan; https://etherscan.io/chart/blocks */
+/* Not to be confused with Avg Transaction Gas Limit */
+/* source: https://ethgasstation.info/blog/ethereum-block-size/ */
 SELECT 
-DATE_TRUNC('day', time) AS dt,
-SUM(size) AS sum_block_size
+    DATE_TRUNC('day', block_time) AS bt,
+    AVG(gas_limit) AS avg_transaction_gas_limit
+FROM ethereum."transactions"
+GROUP BY bt
+OFFSET 1
+
+/* Ethereum Daily Gas Used Chart */
+/* Etherscan comparison: https://etherscan.io/chart/gasused */
+SELECT 
+    DATE_TRUNC('day', time) AS dt,
+    AVG(gas_used) AS avg_block_gas_used
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
+
 
 /* Ethereum Block Count and Rewards Chart */
 /* Add https://duneanalytics.com/paulapivat/Ethereum-Blocks */
@@ -36,24 +46,10 @@ GROUP BY dt
 OFFSET 1
 
 /* Question: Is 'size' in ethereum."blocks" measured in bytes? */
-/* Size visualization does not match etherscan chart */
-/* Etherscan Ethereum Avg Block Size Chart: https://etherscan.io/chart/blocksize */
+/* Block size measured in Kilobytes */
+/* source: https://ethgasstation.info/blog/ethereum-block-size/ */
 
-/* Number of transaction included within the block; see ethereum."transactions" */
 
-/* Miner: Address of miner who mined the block */
-SELECT miner FROM ethereum."blocks"
-LIMIT 10
-OFFSET 1
-
-/* Number of Unique Miner per day Over time */
-/* not sure if useful */
-SELECT 
-DATE_TRUNC('day', time) AS dt,
-COUNT(DISTINCT(miner)) AS count_unique_miner
-FROM ethereum."blocks"
-GROUP BY dt
-OFFSET 1
 
 /* Top 25 Miners by Number of Blocks Mined */
 /* MATCHES Etherscan: Top 25 Miners over last 7 days */
@@ -213,4 +209,15 @@ DATE_TRUNC('day', block_time) AS dt,
 COUNT(*) AS transaction_count
 FROM ethereum."transactions"
 GROUP BY dt
+OFFSET 1
+
+
+/* Avg Transaction Gas Limit */
+/* NOT to be confused with Block Gas Limit */
+/* source: https://ethgasstation.info/blog/ethereum-block-size/ */
+SELECT 
+    DATE_TRUNC('day', block_time) AS bt,
+    AVG(gas_limit) AS avg_transaction_gas_limit
+FROM ethereum."transactions"
+GROUP BY bt
 OFFSET 1
