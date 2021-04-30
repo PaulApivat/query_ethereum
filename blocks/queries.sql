@@ -237,6 +237,42 @@ SELECT
     dt
 FROM temp_table
 
+/******************** Table Join: Blocks & Transactions ************************/
+/* Error: Your query took too long to execute */
+SELECT 
+    b.time,
+    t.block_hash
+FROM ethereum."blocks" b
+JOIN ethereum."transactions" t 
+ON b.hash = t.hash
+LIMIT 5
+
+
+SELECT 
+    DATE_TRUNC('minute', time) AS dt
+FROM ethereum."blocks" b
+WHERE time = '2015-08-11 10:03' 
+LIMIT 50
+
+/* confirm ethereum."blocks".hash = ethereum."transactions".block_hash */
+
+
+/* Blocks */
+SELECT 
+    time,
+    hash,
+    parent_hash
+FROM ethereum."blocks"
+WHERE time > '2015-08-07 08:50'
+LIMIT 100
+
+/* Transaction */
+SELECT
+    block_time,
+    block_hash,
+    hash
+FROM ethereum."transactions"
+LIMIT 10
 
 
 
