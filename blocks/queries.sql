@@ -254,9 +254,39 @@ FROM ethereum."blocks" b
 WHERE time = '2015-08-11 10:03' 
 LIMIT 50
 
+
+
+/**************************** Foundational Topics on Ethereum Blocks**************************/
+
+/* Linked List */
+SELECT 
+    time,
+    hash,
+    parent_hash
+FROM ethereum."blocks"
+LIMIT 10
+OFFSET 1
+
+/* Linked List - updated data from last 7 days */
+SELECT 
+    time,
+    hash,
+    parent_hash
+FROM ethereum."blocks"
+WHERE time > now() - interval '7 days'
+LIMIT 10
+OFFSET 1
+
+
+/* Number of Blocks in a Day */
+SELECT 
+    COUNT(*),
+    DATE_TRUNC('day', time) AS dt
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+
 /* confirm ethereum."blocks".hash = ethereum."transactions".block_hash */
-
-
 /* Blocks */
 SELECT 
     time,
@@ -273,6 +303,51 @@ SELECT
     hash
 FROM ethereum."transactions"
 LIMIT 10
+
+/* Block Gas Limit over time */
+SELECT 
+    DATE_TRUNC('day', time) AS dt,
+    AVG(gas_limit) AS avg_gas_limit
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+
+/* Block Gas Limit vs Block Gas used */
+SELECT 
+    DATE_TRUNC('day', time) AS dt,
+    AVG(gas_limit) AS avg_gas_limit,
+    AVG(gas_used) AS avg_gas_used
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+
+/* Number of Blocks and corresponding number of transaction over past 7-days */
+SELECT
+    COUNT(*) AS number_of_transactions,
+    COUNT(DISTINCT(block_number)) AS number_of_blocks
+FROM ethereum."transactions"
+WHERE block_time > now() - interval '7 days'
+
+/* Number of Transactions for a specific block in the past 1 day */
+SELECT
+    COUNT(*) AS num_transactions
+FROM ethereum."transactions"
+WHERE block_time > now() - interval '1 day' AND block_hash = '\xb8b1984f2a26da40201bad9eaf1e898eaefb0eec0945b4451e1efacb159e5b76'
+
+/* Query on a specific day in 2018 */
+SELECT
+    block_time,
+    block_hash,
+    hash
+FROM ethereum."transactions" 
+WHERE block_time > '2018-08-07'
+LIMIT 100
+
+/* Query a specific block on a specific day in 2018 */
+SELECT
+    COUNT(*) AS num_transactions
+FROM ethereum."transactions" 
+WHERE block_hash = '\xd93fdbd1f14f6e6ac48fbe02c829253d584f816dce733e2b0c131b4c7556abb3'AND block_time > '2018-08-07'
 
 
 
