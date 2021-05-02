@@ -350,6 +350,29 @@ FROM ethereum."transactions"
 WHERE block_hash = '\xd93fdbd1f14f6e6ac48fbe02c829253d584f816dce733e2b0c131b4c7556abb3'AND block_time > '2018-08-07'
 
 
+/* Locate my txn hash of ENS domain on Etherscan */
+SELECT
+    block_time,
+    hash,
+    "from",
+    "to"
+FROM ethereum."transactions" 
+WHERE hash = '\xdb23119668fcc774d24db9ed1a2b1701438ffe94824a9e52506f9f98f5d57b77'
+LIMIT 10
+
+/* Number of Txn sent from Specific Account */
+/* can link to specific block */
+SELECT
+    block_time,
+    block_hash,
+    block_number,
+    hash,
+    "from",
+    "to"
+FROM ethereum."transactions" 
+WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
+LIMIT 50
+
 
 /************************** Transaction, standard data ***************************/
 
