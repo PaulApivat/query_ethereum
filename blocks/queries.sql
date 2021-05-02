@@ -360,6 +360,7 @@ FROM ethereum."transactions"
 WHERE hash = '\xdb23119668fcc774d24db9ed1a2b1701438ffe94824a9e52506f9f98f5d57b77'
 LIMIT 10
 
+/* Dune Analytics */
 /* Number of Txn sent from Specific Account */
 /* can link to specific block */
 SELECT
@@ -371,6 +372,18 @@ SELECT
     "to"
 FROM ethereum."transactions" 
 WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
+LIMIT 50
+
+/* Same query - num txn from specific account -  on BigQuery */
+SELECT  
+    block_timestamp,
+    block_hash,
+    block_number,
+    "hash",
+    from_address,
+    to_address
+FROM `bigquery-public-data.crypto_ethereum.transactions` 
+WHERE from_address = "0xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781"
 LIMIT 50
 
 
