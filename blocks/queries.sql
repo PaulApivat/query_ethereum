@@ -386,6 +386,24 @@ FROM `bigquery-public-data.crypto_ethereum.transactions`
 WHERE from_address = "0xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781"
 LIMIT 50
 
+/******************** ACCOUNT *************************/
+/******* Account State contains: nonce, balance, storage hash, code hash *******/
+/******* source: https://ethereum.org/en/developers/docs/accounts/    */
+/* block_hash != storage hash */
+/* hash != code hash */
+
+SELECT 
+    nonce,
+    value / 1e18 AS balance,
+    "from",
+    block_time,
+    block_number,
+    block_hash,
+    hash
+FROM ethereum."transactions"
+WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
+LIMIT 50
+
 
 /************************** Transaction, standard data ***************************/
 
