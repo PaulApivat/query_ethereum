@@ -412,44 +412,11 @@ SELECT
     "from",
     "to",
     gas_limit,
-    gas_price,
+    gas_price / 1e9 AS gwei,
     data
 FROM ethereum."transactions"
 WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
 LIMIT 50
-
-/* Adjust Gas Prices in Eth */
-/* NOTE: Need to put Gas Denominated in Eth (not Priced in ETH)  */
-WITH txn AS (
-    SELECT 
-        nonce,
-        block_time,
-        value / 1e18 AS balance_eth,
-        "from",
-        "to",
-        gas_limit,
-        gas_price,
-        data,
-        price
-    FROM ethereum."transactions" e
-    JOIN prices."layer1_usd" p
-    ON p.minute = DATE_TRUNC('minute', e.block_time)
-    WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
-    LIMIT 50
-)
-SELECT
-    nonce,
-    DATE_TRUNC('day', block_time) AS dt,
-    balance_eth,
-    "from",
-    "to",
-    gas_limit,
-    gas_price,
-    gas_price / price AS gas_price_in_eth,
-    price,
-    data
-FROM txn
-GROUP BY dt, gas_limit, gas_price, gas_price_in_eth, price, nonce, balance_eth, "from", "to", data
 
 /* PRICE of ETH in last 7 days */
 SELECT 
