@@ -427,6 +427,29 @@ WHERE symbol = 'ETH' AND minute > now() - interval '7 days'
 GROUP BY dt
 LIMIT 10
 
+/* Account Transactions (without Internal Transactions) */
+WITH sum_table AS (
+SELECT 
+    nonce,
+    value / 1e18 AS balance,
+    "from",
+    "to",
+    block_time,
+    block_number,
+    gas_used,
+    gas_price / 1e9 AS gas_price_gwei
+FROM ethereum."transactions"
+WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781' OR "to" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
+LIMIT 50
+OFFSET 1
+)
+SELECT
+    SUM(balance) AS sum_out,
+    SUM(gas_used * gas_price_gwei) / 1e9 AS txn_fee
+FROM sum_table
+
+
+
 /************************** Transaction, standard data ***************************/
 
 /* Number of Daily Transaction over Time */
