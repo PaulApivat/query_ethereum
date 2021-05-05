@@ -462,11 +462,13 @@ SELECT
 FROM ethereum."transactions"
 WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781' OR "to" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
 LIMIT 50
-OFFSET 1
 )
 SELECT
-    balance,
-    (gas_used * gas_price_gwei) / 1e9 AS txn_fee
+    nonce,
+    balance AS ether,
+    (gas_used * gas_price_gwei) / 1e9 AS txn_fee,
+    "from",
+    "to"
 FROM sum_table
 
 
