@@ -45,6 +45,21 @@ FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
 
+/* Average Number of Block Produced per Day (over life of Ethereum) */
+WITH temp_table AS (
+SELECT 
+    DATE_TRUNC('day', time) AS dt,
+    COUNT(*) AS block_count
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
+)
+SELECT 
+    AVG(block_count) AS avg_block_count
+FROM temp_table
+
+
+
 /* Question: Is 'size' in ethereum."blocks" measured in bytes? */
 /* Block size measured in Kilobytes */
 /* source: https://ethgasstation.info/blog/ethereum-block-size/ */
@@ -470,6 +485,35 @@ SELECT
     "from",
     "to"
 FROM sum_table
+
+/* What's in a Transaction? */
+WITH temp_table AS (
+SELECT 
+    nonce,
+    block_time,
+    value / 1e18 AS ether,
+    "from",
+    "to",
+    gas_limit,
+    gas_used,
+    ROUND(((gas_used / gas_limit) * 100),2) AS gas_used_pct,
+    gas_price / 1e9 AS gas_price_gwei,
+    data
+FROM ethereum."transactions"
+WHERE "from" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781' OR "to" = '\xdfdf2d882d9ebce6c7eac3da9ab66cbfda263781'
+LIMIT 50
+)
+SELECT 
+    nonce,
+    ether,
+    (gas_used * gas_price_gwei) / 1e9 AS txn_fee,
+    gas_limit,
+    gas_used,
+    gas_used_pct,
+    "from",
+    "to",
+    data
+FROM temp_table
 
 
 
