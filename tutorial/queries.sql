@@ -31,3 +31,23 @@ FROM temp_table
 SELECT * FROM ethereum."blocks"
 WHERE "number" = 12396854
 LIMIT 10
+
+
+/* Ethereum Transaction Details */
+SELECT 
+    "to",
+    "from",
+    value / 1e18 AS ether,
+    data,
+    gas_limit,
+    gas_price / 1e9 AS gas_price_gwei,
+    gas_used,
+    ROUND(((gas_used / gas_limit) * 100),2) AS gas_used_pct
+FROM ethereum."transactions"
+WHERE "to" = '\xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'   
+ORDER BY block_time DESC
+
+/* Query a block for list of all transactions */
+SELECT * FROM ethereum."transactions"
+WHERE block_number = 12401622
+ORDER BY block_time DESC
