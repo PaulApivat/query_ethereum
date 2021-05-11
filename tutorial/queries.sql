@@ -47,7 +47,17 @@ FROM ethereum."transactions"
 WHERE "to" = '\xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'   
 ORDER BY block_time DESC
 
+
 /* Query a block for list of all transactions */
 SELECT * FROM ethereum."transactions"
 WHERE block_number = 12401622
 ORDER BY block_time DESC
+
+
+/* Average Gas Limit (Block Size), Ethereum */
+SELECT 
+    DATE_TRUNC('day', time) AS dt,
+    AVG(gas_limit) AS avg_block_gas_limit
+FROM ethereum."blocks"
+GROUP BY dt
+OFFSET 1
