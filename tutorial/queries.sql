@@ -61,3 +61,14 @@ SELECT
 FROM ethereum."blocks"
 GROUP BY dt
 OFFSET 1
+
+
+
+/* Gas Prices for Transactions to EF */
+SELECT 
+    block_time,
+    gas_price / 1e9 AS gas_price_gwei,
+    value / 1e18 AS eth_sent
+FROM ethereum."transactions"
+WHERE "to" = '\xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe'   
+ORDER BY block_time DESC
